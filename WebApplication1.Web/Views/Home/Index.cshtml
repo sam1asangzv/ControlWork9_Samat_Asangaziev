@@ -1,0 +1,106 @@
+@model WebApplication1.ViewModels.WalletHomeViewModel
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<WebApplication1.WalletResources> T
+@{
+    ViewData["Title"] = T["Home"];
+}
+
+<div class="hero-panel mb-4">
+    <div>
+        <span class="eyebrow">@T["AppName"]</span>
+        <h1 class="display-6 fw-bold mt-2">@T["Home"]</h1>
+        <p class="mb-0 text-secondary">@T["AnonymousTopUpInfo"]</p>
+    </div>
+    @if (Model.Wallet is not null)
+    {
+        <div class="balance-card">
+            <div class="small text-white-50">@T["Balance"]</div>
+            <div class="balance-value">@Model.Wallet.Balance.ToString("N2") <span>@T["Currency"]</span></div>
+            <div class="small text-white-50">@T["WalletNumber"]: <strong class="text-white">@Model.Wallet.AccountNumber</strong></div>
+        </div>
+    }
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-4">
+        <section class="wallet-card h-100">
+            <h2 class="h5">@T["TopUp"]</h2>
+            <p class="text-secondary small">@T["AnonymousTopUpInfo"]</p>
+            <form asp-controller="Wallet" asp-action="TopUp" method="post" data-wallet-ajax>
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label class="form-label" for="topup-account">@T["WalletNumber"]</label>
+                    <input id="topup-account" class="form-control" name="AccountNumber" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required value="@(Model.Wallet?.AccountNumber ?? "")" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="topup-amount">@T["Amount"]</label>
+                    <input id="topup-amount" class="form-control" type="number" name="Amount" min="0.01" max="100000000" step="0.01" required />
+                </div>
+                <button class="btn btn-primary w-100" type="submit">@T["TopUp"]</button>
+            </form>
+        </section>
+    </div>
+
+    @if (Model.Wallet is not null)
+    {
+        <div class="col-lg-4">
+            <section class="wallet-card h-100">
+                <h2 class="h5">@T["Transfer"]</h2>
+                <form asp-controller="Wallet" asp-action="Transfer" method="post" data-wallet-ajax>
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3">
+                        <label class="form-label" for="recipient-number">@T["RecipientNumber"]</label>
+                        <input id="recipient-number" class="form-control" name="RecipientNumber" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="transfer-amount">@T["Amount"]</label>
+                        <input id="transfer-amount" class="form-control" type="number" name="Amount" min="0.01" max="100000000" step="0.01" required />
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">@T["Transfer"]</button>
+                </form>
+            </section>
+        </div>
+        <div class="col-lg-4">
+            <section class="wallet-card h-100">
+                <h2 class="h5">@T["PayService"]</h2>
+                <form asp-controller="Wallet" asp-action="PayService" method="post" data-wallet-ajax>
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3">
+                        <label class="form-label" for="provider-id">@T["ServiceProvider"]</label>
+                        <select id="provider-id" class="form-select" name="ProviderId" required>
+                            @foreach (var provider in Model.Providers)
+                            {
+                                <option value="@provider.Id">@provider.Name — @provider.Category</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="service-identifier">@T["ServiceIdentifier"]</label>
+                        <input id="service-identifier" class="form-control" name="ServiceIdentifier" maxlength="32" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="service-amount">@T["Amount"]</label>
+                        <input id="service-amount" class="form-control" type="number" name="Amount" min="0.01" max="100000000" step="0.01" required />
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit">@T["PayService"]</button>
+                </form>
+            </section>
+        </div>
+    }
+    else
+    {
+        <div class="col-lg-8">
+            <section class="wallet-card h-100 d-flex flex-column justify-content-center">
+                <h2 class="h5">@T["LoginToContinue"]</h2>
+                <p class="text-secondary">@T["InitialBalance"]</p>
+                <p class="small text-secondary">@T["StartingBalanceNote"]</p>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="Register">@T["Register"]</a>
+                    <a class="btn btn-outline-primary" asp-controller="Account" asp-action="Login">@T["Login"]</a>
+                </div>
+            </section>
+        </div>
+    }
+</div>
+
+<div class="alert alert-light border mt-4 small">@T["DemoServices"]</div>
