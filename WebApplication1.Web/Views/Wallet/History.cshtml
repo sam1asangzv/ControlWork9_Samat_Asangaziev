@@ -1,0 +1,53 @@
+@model WebApplication1.ViewModels.WalletHistoryViewModel
+@using Microsoft.Extensions.Localization
+@using WebApplication1.BLL.Models
+@inject IStringLocalizer<WebApplication1.WalletResources> T
+@{
+    ViewData["Title"] = T["History"];
+}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div><span class="eyebrow">@T["WalletNumber"] @Model.Wallet.AccountNumber</span><h1 class="h2 mt-2">@T["History"]</h1></div>
+    <div class="balance-chip">@T["Balance"]: <strong>@Model.Wallet.Balance.ToString("N2") @T["Currency"]</strong></div>
+</div>
+
+<form method="get" asp-action="History" class="wallet-card mb-4">
+    <div class="row g-3 align-items-end">
+        <div class="col-sm-4"><label class="form-label" for="date-from">@T["DateFrom"]</label><input class="form-control" type="date" name="from" id="date-from" value="@(Model.From?.ToString("yyyy-MM-dd"))" /></div>
+        <div class="col-sm-4"><label class="form-label" for="date-to">@T["DateTo"]</label><input class="form-control" type="date" name="to" id="date-to" value="@(Model.To?.ToString("yyyy-MM-dd"))" /></div>
+        <div class="col-sm-4"><button class="btn btn-primary" type="submit">@T["Filter"]</button><a class="btn btn-outline-secondary ms-2" asp-action="History">@T["Home"]</a></div>
+    </div>
+</form>
+
+<section class="wallet-card">
+    @if (Model.Transactions.Count == 0)
+    {
+        <p class="text-secondary mb-0">@T["NoTransactions"]</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead><tr><th>@T["Date"]</th><th>@T["Operation"]</th><th>@T["Counterparty"]</th><th class="text-end">@T["Amount"]</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model.Transactions)
+                {
+                    string type = item.Type switch
+                    {
+                        WalletTransactionType.TopUp => "TypeTopUp",
+                        WalletTransactionType.TransferSent => "TypeTransferSent",
+                        WalletTransactionType.TransferReceived => "TypeTransferReceived",
+                        WalletTransactionType.ServicePayment => "TypeServicePayment",
+                        _ => "Operation"
+                    };
+                    <tr>
+                        <td>@item.CreatedAtUtc.ToLocalTime().ToString("g")</td>
+                        <td>@T[type]</td>
+                        <td>@(item.Type == WalletTransactionType.TopUp ? T["TopUpSource"] : item.Counterparty)</td>
+                        <td class="text-end fw-semibold @(item.Amount >= 0 ? "text-success" : "text-danger")">@item.Amount.ToString("+#,##0.00;-#,##0.00;0.00") @T["Currency"]</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
