@@ -1,0 +1,11 @@
+@model WebApplication1.ViewModels.ErrorPageViewModel
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<WebApplication1.WalletResources> T
+@{
+    ViewData["Title"] = T["ErrorTitle"];
+}
+<div class="wallet-card">
+    <h1 class="h3 text-danger">@T["ErrorTitle"]</h1>
+    <p>@T["ErrorHeading"]</p>
+    <p>@T["RequestId"]: <code>@Model.RequestId</code></p>
+</div>

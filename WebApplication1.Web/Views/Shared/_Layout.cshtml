@@ -1,0 +1,55 @@
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<WebApplication1.WalletResources> T
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @T["AppName"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+@{ string networkErrorMessage = T["NetworkError"].Value; }
+<body data-network-error="@networkErrorMessage" data-decimal-separator="@System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator">
+    <nav class="navbar navbar-expand-md navbar-dark wallet-nav shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">@T["AppName"]</a>
+            <div class="navbar-nav ms-auto align-items-md-center gap-md-2">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">@T["Home"]</a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a class="nav-link" asp-controller="Wallet" asp-action="History">@T["History"]</a>
+                    <span class="navbar-text text-white">@User.Identity.Name</span>
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                        <button class="btn btn-sm btn-outline-light" type="submit">@T["Logout"]</button>
+                    </form>
+                }
+                else
+                {
+                    <a class="nav-link" asp-controller="Account" asp-action="Login">@T["Login"]</a>
+                    <a class="btn btn-sm btn-light" asp-controller="Account" asp-action="Register">@T["Register"]</a>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        @RenderBody()
+    </main>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="wallet-toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+            <div class="toast-header"><strong class="me-auto">@T["AppName"]</strong><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="@T["Close"]"></button></div>
+            <div class="toast-body" id="wallet-toast-message"></div>
+        </div>
+    </div>
+    @if (TempData["Toast"] is string toastMessage)
+    {
+        <div id="server-toast-message" data-message="@toastMessage" class="d-none"></div>
+    }
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

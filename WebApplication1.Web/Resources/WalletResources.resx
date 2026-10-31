@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="AppName" xml:space="preserve"><value>Электронный кошелёк</value></data>
+  <data name="Currency" xml:space="preserve"><value>сом</value></data>
+  <data name="Close" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="Home" xml:space="preserve"><value>Главная</value></data>
+  <data name="Register" xml:space="preserve"><value>Регистрация</value></data>
+  <data name="Login" xml:space="preserve"><value>Войти</value></data>
+  <data name="Logout" xml:space="preserve"><value>Выйти</value></data>
+  <data name="Email" xml:space="preserve"><value>Электронная почта</value></data>
+  <data name="DisplayName" xml:space="preserve"><value>Имя</value></data>
+  <data name="Password" xml:space="preserve"><value>Пароль</value></data>
+  <data name="ConfirmPassword" xml:space="preserve"><value>Повторите пароль</value></data>
+  <data name="RememberMe" xml:space="preserve"><value>Запомнить меня</value></data>
+  <data name="WalletNumber" xml:space="preserve"><value>Номер кошелька</value></data>
+  <data name="Balance" xml:space="preserve"><value>Баланс</value></data>
+  <data name="InitialBalance" xml:space="preserve"><value>Начальный баланс нового кошелька: 100 000 сом.</value></data>
+  <data name="TopUp" xml:space="preserve"><value>Пополнить кошелёк</value></data>
+  <data name="Transfer" xml:space="preserve"><value>Перевести пользователю</value></data>
+  <data name="PayService" xml:space="preserve"><value>Оплатить услугу</value></data>
+  <data name="Amount" xml:space="preserve"><value>Сумма (сом)</value></data>
+  <data name="RecipientNumber" xml:space="preserve"><value>Номер кошелька получателя</value></data>
+  <data name="ServiceProvider" xml:space="preserve"><value>Поставщик услуги</value></data>
+  <data name="ServiceIdentifier" xml:space="preserve"><value>Лицевой счёт или номер телефона</value></data>
+  <data name="Submit" xml:space="preserve"><value>Отправить</value></data>
+  <data name="History" xml:space="preserve"><value>История операций</value></data>
+  <data name="DateFrom" xml:space="preserve"><value>Дата с</value></data>
+  <data name="DateTo" xml:space="preserve"><value>Дата по</value></data>
+  <data name="Filter" xml:space="preserve"><value>Фильтровать</value></data>
+  <data name="Date" xml:space="preserve"><value>Дата</value></data>
+  <data name="Operation" xml:space="preserve"><value>Операция</value></data>
+  <data name="Counterparty" xml:space="preserve"><value>Контрагент</value></data>
+  <data name="TopUpSource" xml:space="preserve"><value>Пополнение баланса</value></data>
+  <data name="NoTransactions" xml:space="preserve"><value>Операций пока нет.</value></data>
+  <data name="AnonymousTopUpInfo" xml:space="preserve"><value>Пополнить можно по номеру кошелька, даже без входа в аккаунт.</value></data>
+  <data name="LoginToContinue" xml:space="preserve"><value>Войдите или зарегистрируйтесь, чтобы переводить деньги и оплачивать услуги.</value></data>
+  <data name="FieldRequired" xml:space="preserve"><value>Заполните это поле.</value></data>
+  <data name="InvalidEmail" xml:space="preserve"><value>Укажите корректный адрес электронной почты.</value></data>
+  <data name="PasswordMismatch" xml:space="preserve"><value>Пароли не совпадают.</value></data>
+  <data name="PasswordLength" xml:space="preserve"><value>Пароль должен содержать не менее 8 символов.</value></data>
+  <data name="OperationSuccessTopUp" xml:space="preserve"><value>Кошелёк успешно пополнен.</value></data>
+  <data name="OperationSuccessTransfer" xml:space="preserve"><value>Перевод успешно выполнен.</value></data>
+  <data name="OperationSuccessPayment" xml:space="preserve"><value>Услуга успешно оплачена.</value></data>
+  <data name="WalletNotFound" xml:space="preserve"><value>Кошелёк с таким номером не найден.</value></data>
+  <data name="ServiceAccountNotFound" xml:space="preserve"><value>У поставщика не найден такой лицевой счёт или номер.</value></data>
+  <data name="InsufficientFunds" xml:space="preserve"><value>Недостаточно средств на балансе.</value></data>
+  <data name="SameWallet" xml:space="preserve"><value>Нельзя переводить деньги на собственный кошелёк.</value></data>
+  <data name="InvalidAmount" xml:space="preserve"><value>Введите положительную сумму не более двух знаков после запятой.</value></data>
+  <data name="RegisterFailed" xml:space="preserve"><value>Не удалось создать аккаунт. Проверьте введённые данные.</value></data>
+  <data name="LoginFailed" xml:space="preserve"><value>Неверная почта или пароль.</value></data>
+  <data name="SignOut" xml:space="preserve"><value>Вы вышли из аккаунта.</value></data>
+  <data name="DemoServices" xml:space="preserve"><value>Демо-счета: Mobilink — 0555123456; FiberNet — 12345678; City Utilities — LC-100200.</value></data>
+  <data name="Anonymous" xml:space="preserve"><value>Гость</value></data>
+  <data name="PositiveAmount" xml:space="preserve"><value>Сумма должна быть больше нуля.</value></data>
+  <data name="LoginPrompt" xml:space="preserve"><value>Уже зарегистрированы?</value></data>
+  <data name="RegisterPrompt" xml:space="preserve"><value>Нет аккаунта?</value></data>
+  <data name="TypeTopUp" xml:space="preserve"><value>Пополнение</value></data>
+  <data name="TypeTransferSent" xml:space="preserve"><value>Перевод отправлен</value></data>
+  <data name="TypeTransferReceived" xml:space="preserve"><value>Перевод получен</value></data>
+  <data name="TypeServicePayment" xml:space="preserve"><value>Оплата услуги</value></data>
+  <data name="DateRangeInvalid" xml:space="preserve"><value>Начальная дата не должна быть позже конечной.</value></data>
+  <data name="NetworkError" xml:space="preserve"><value>Не удалось выполнить запрос. Проверьте подключение и повторите попытку.</value></data>
+  <data name="StartingBalanceNote" xml:space="preserve"><value>Начальный баланс — демонстрационное условие задания.</value></data>
+  <data name="ErrorTitle" xml:space="preserve"><value>Ошибка</value></data>
+  <data name="ErrorHeading" xml:space="preserve"><value>Произошла ошибка при обработке запроса.</value></data>
+  <data name="RequestId" xml:space="preserve"><value>Номер запроса</value></data>
+</root>

@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+.idea/
+*.user
+*.suo
+*.log
+appsettings.Development.json
+WebApplication1.Web/wwwroot/Files/book.pdf
